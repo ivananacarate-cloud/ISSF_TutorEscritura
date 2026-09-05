@@ -52,52 +52,19 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
-        .welcome-card {
-            background: #ffffff;
-            max-width: 700px;
+        /* Contenedor embebido del Chatbot */
+        #webchat-container {
             width: 100%;
-            padding: 2.5rem;
+            max-width: 950px;
+            height: 720px;
+            background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-left: 6px solid var(--primary-color);
-        }
-
-        .welcome-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .welcome-card p {
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
-            color: #555;
-        }
-
-        .instructions-list {
-            background-color: #fdfbf7;
-            border: 1px solid #f0e6d2;
-            padding: 1.2rem 1.5rem;
-            border-radius: 8px;
-            margin-top: 1rem;
-        }
-
-        .instructions-list h3 {
-            font-size: 1.05rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .instructions-list ul {
-            padding-left: 1.2rem;
-            color: #444;
-        }
-
-        .instructions-list li {
-            margin-bottom: 0.4rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
         }
 
         footer {
@@ -110,11 +77,11 @@
         }
 
         @media (max-width: 768px) {
+            #webchat-container {
+                height: 80vh;
+            }
             header h1 {
                 font-size: 1.4rem;
-            }
-            .welcome-card {
-                padding: 1.5rem;
             }
         }
     </style>
@@ -127,28 +94,27 @@
     </header>
 
     <main>
-        <div class="welcome-card">
-            <h2>Bienvenido al Asistente Académico</h2>
-            <p>Este espacio está diseñado para acompañarte en la producción, corrección, estructuración y revisión de tus trabajos prácticos, monografías y proyectos de investigación.</p>
-            
-            <div class="instructions-list">
-                <h3>¿Cómo utilizar el tutor?</h3>
-                <ul>
-                    <li>Hacé clic en el botón de chat en la esquina inferior derecha.</li>
-                    <li>Consultá sobre normas de citación (APA 7.ª edición), estructura de párrafos o coherencia.</li>
-                    <li>Pedí orientación sobre cómo mejorar la redacción de tus borradores.</li>
-                </ul>
-            </div>
-        </div>
+        <!-- Marco central donde se incrusta el Webchat de Botpress -->
+        <div id="webchat-container"></div>
     </main>
 
     <footer>
         <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Educativa de Acompañamiento Académico</p>
     </footer>
 
-    <!-- Integración Estándar de Botpress (Burbuja Flotante) -->
+    <!-- Scripts de integración de Botpress Webchat v5 -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/01/08/18/20250108182746-M3XU3R8X.js"></script>
-
+    <script>
+      window.botpress.init({
+        "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "selector": "#webchat-container",
+        "configuration": {
+          "containerWidth": "100%",
+          "layoutWidth": "100%",
+          "hideWidget": true
+        }
+      });
+    </script>
 </body>
 </html>
