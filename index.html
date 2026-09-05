@@ -7,6 +7,7 @@
     <style>
         :root {
             --primary-color: #800020; /* Bordó institucional */
+            --primary-dark: #5c0017;
             --secondary-color: #f4f4f9;
             --text-color: #333333;
             --accent-color: #d9a74a;
@@ -27,94 +28,177 @@
             min-height: 100vh;
         }
 
+        /* Encabezado Institucional */
         header {
             background-color: var(--primary-color);
             color: #ffffff;
-            padding: 1.5rem 2rem;
-            text-align: center;
+            padding: 1.2rem 2rem;
             border-bottom: 4px solid var(--accent-color);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
 
-        header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.3rem;
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        header p {
-            font-size: 1rem;
+        .header-title h1 {
+            font-size: 1.6rem;
+        }
+
+        .header-title p {
+            font-size: 0.95rem;
             opacity: 0.9;
-            font-weight: 300;
         }
 
+        /* Navegación */
+        nav {
+            background-color: var(--primary-dark);
+            padding: 0.5rem 2rem;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn.active {
+            background: white;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        /* Área Principal */
         main {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-        }
-
-        .welcome-card {
-            background: #ffffff;
-            max-width: 700px;
+            max-width: 1200px;
             width: 100%;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border-left: 6px solid var(--primary-color);
+            margin: 2rem auto;
+            padding: 0 1rem;
         }
 
-        .welcome-card h2 {
+        .section-title {
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
         }
 
-        .welcome-card p {
-            line-height: 1.6;
-            margin-bottom: 1.2rem;
-            color: #555;
+        .workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        .instructions-list {
-            background-color: #fdfbf7;
-            border: 1px solid #f0e6d2;
-            padding: 1.2rem 1.5rem;
+        .card {
+            background: white;
             border-radius: 8px;
-            margin-top: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
         }
 
-        .instructions-list h3 {
-            font-size: 1.05rem;
+        .card h3 {
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
 
-        .instructions-list ul {
-            padding-left: 1.2rem;
+        .card label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 220px;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            resize: vertical;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .options-group {
+            margin: 1.2rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
             color: #444;
+            cursor: pointer;
         }
 
-        .instructions-list li {
-            margin-bottom: 0.4rem;
+        .btn-analyze {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: fit-content;
+            transition: background 0.2s;
+        }
+
+        .btn-analyze:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* Panel de Resultados */
+        .output-box {
+            flex: 1;
+            background: #fafafa;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            padding: 1rem;
+            overflow-y: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+            white-space: pre-line;
         }
 
         footer {
             background-color: var(--primary-color);
-            color: #ffffff;
+            color: white;
             text-align: center;
             padding: 1rem;
             font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: auto;
         }
 
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.4rem;
-            }
-            .welcome-card {
-                padding: 1.5rem;
+        @media (max-width: 850px) {
+            .workspace {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -122,45 +206,77 @@
 <body>
 
     <header>
-        <h1>Instituto Superior La Sagrada Familia</h1>
-        <p>Portal del Tutor de Escritura Académica</p>
+        <div class="header-container">
+            <div class="header-title">
+                <h1>Tutor de Escritura Académica</h1>
+                <p>Instituto Superior La Sagrada Familia - Plataforma de Acompañamiento</p>
+            </div>
+        </div>
     </header>
 
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn">Inicio</button>
+            <button class="nav-btn">Guía APA 7ª</button>
+            <button class="nav-btn active">Revisor Académico</button>
+            <button class="nav-btn">Recursos</button>
+        </div>
+    </nav>
+
     <main>
-        <div class="welcome-card">
-            <h2>Bienvenido al Asistente Académico</h2>
-            <p>Este espacio está diseñado para acompañar a los estudiantes del ISSF en la producción, corrección, estructuración de sus trabajos prácticos, monografías y proyectos de investigación.</p>
-            
-            <div class="instructions-list">
-                <h3>¿Cómo utilizar el tutor?</h3>
-                <ul>
-                    <li>Haz clic en la burbuja de chat ubicada en la esquina inferior derecha.</li>
-                    <li>Consulta sobre normas de citación (APA), estructura de párrafos o coherencia textual.</li>
-                    <li>Pide retroalimentación para mejorar la redacción de tus borradores.</li>
-                </ul>
+        <h2 class="section-title">Revisor Académico</h2>
+
+        <div class="workspace">
+            <!-- Panel Izquierdo: Entrada de Texto -->
+            <div class="card">
+                <h3>Texto a revisar</h3>
+                <label>Pega el fragmento de tu trabajo práctico, borrador o monografía:</label>
+                <textarea id="inputText" placeholder="Escribe o pega tu texto aquí..."></textarea>
+
+                <div class="options-group">
+                    <label class="checkbox-label"><input type="checkbox" id="chkEstructura" checked> Estructura y coherencia textual</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkArg" checked> Solidez argumentativa</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkEstilo" checked> Estilo y vocabulario académico</label>
+                    <label class="checkbox-label"><input type="checkbox" id="chkAPA" checked> Uso de citas y referencias APA 7.ª ed.</label>
+                </div>
+
+                <button class="btn-analyze" onclick="analizarTexto()">Analizar Texto</button>
+            </div>
+
+            <!-- Panel Derecho: Devolución de la IA -->
+            <div class="card">
+                <h3>Análisis y Sugerencias</h3>
+                <div class="output-box" id="outputResult">
+                    Los resultados del análisis aparecerán aquí...
+                </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Instituto Superior Sagrada Familia | Plataforma Educativa</p>
+        <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Educativa</p>
     </footer>
 
-    <!-- Integración Webchat Botpress con Apertura Automática -->
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script>
-      window.botpress.init({
-        "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
-        "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
-        "configuration": {
-          "showPowerBy": false
-        }
-      });
+        function analizarTexto() {
+            const texto = document.getElementById('inputText').value.trim();
+            const output = document.getElementById('outputResult');
 
-      // Abre el panel lateral automáticamente apenas carga la página
-      window.botpress.on("webchat:ready", () => {
-        window.botpress.open();
-      });
+            if (!texto) {
+                output.innerText = "Por favor, ingresa un fragmento de texto para analizar.";
+                return;
+            }
+
+            output.innerText = "Procesando el análisis académico...";
+
+            // Simulación de revisión pedagógica institucional
+            setTimeout(() => {
+                output.innerHTML = `<strong>Devolución del Tutor Académico:</strong>\n\n` +
+                `1. <strong>Estructura:</strong> El párrafo presenta una idea clara, pero se recomienda mejorar los conectores entre oraciones.\n\n` +
+                `2. <strong>Estilo Académico:</strong> Evita utilizar expresiones informales o primera persona si el trabajo requiere un tono objetivo.\n\n` +
+                `3. <strong>Normas APA 7.ª ed.:</strong> Revisa que las citas en el texto incluyan el año entre paréntesis (ej. Apellido, 2024).`;
+            }, 1200);
+        }
     </script>
 </body>
 </html>
