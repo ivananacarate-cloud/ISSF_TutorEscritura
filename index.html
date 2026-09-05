@@ -6,138 +6,115 @@
     <title>Tutor de Escritura Académica - ISSF</title>
     <style>
         :root {
-            --bordo: #800020;
-            --dorado: #FFD700;
-            --gris-fondo: #f8f9fa;
-            --texto-oscuro: #2b2b2b;
+            --primary-color: #800020; /* Bordó institucional */
+            --secondary-color: #f4f4f9;
+            --text-color: #333333;
+            --accent-color: #d9a74a;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--gris-fondo);
-            color: var(--texto-oscuro);
+            background-color: var(--secondary-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
         }
 
         header {
-            background-color: var(--bordo);
-            color: white;
+            background-color: var(--primary-color);
+            color: #ffffff;
             padding: 1.5rem 2rem;
-            border-bottom: 4px solid var(--dorado);
             text-align: center;
+            border-bottom: 4px solid var(--accent-color);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         header h1 {
             font-size: 1.8rem;
             margin-bottom: 0.3rem;
-            letter-spacing: 0.5px;
         }
 
         header p {
             font-size: 1rem;
-            color: var(--dorado);
-            font-weight: 500;
+            opacity: 0.9;
+            font-weight: 300;
         }
 
         main {
             flex: 1;
-            max-width: 900px;
-            width: 90%;
-            margin: 2rem auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
         }
 
-        .bienvenida h2 {
-            color: var(--bordo);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .bienvenida p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            font-size: 1.05rem;
-        }
-
-        .instrucciones {
-            background-color: #fffdf0;
-            border-left: 4px solid var(--dorado);
-            padding: 1rem;
-            margin-top: 1.5rem;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .instrucciones h3 {
-            color: var(--bordo);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        .instrucciones ul {
-            list-style-position: inside;
-            line-height: 1.6;
+        /* Contenedor embebido del Chatbot */
+        #webchat-container {
+            width: 100%;
+            max-width: 950px;
+            height: 720px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
         }
 
         footer {
-            background-color: var(--bordo);
-            color: white;
+            background-color: var(--primary-color);
+            color: #ffffff;
             text-align: center;
             padding: 1rem;
-            font-size: 0.9rem;
-            margin-top: auto;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        footer a {
-            color: var(--dorado);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
+        @media (max-width: 768px) {
+            #webchat-container {
+                height: 80vh;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Instituto Superior Sagrada Familia</h1>
+        <h1>Instituto Superior La Sagrada Familia</h1>
         <p>Portal del Tutor de Escritura Académica</p>
     </header>
 
     <main>
-        <section class="bienvenida">
-            <h2>Bienvenido al Asistente Académico</h2>
-            <p>Este espacio está diseñado para acompañar a los estudiantes del ISSF en la producción, corrección y estructuración de sus trabajos prácticos, monografías y proyectos de investigación.</p>
-            
-            <div class="instrucciones">
-                <h3>¿Cómo utilizar el tutor?</h3>
-                <ul>
-                    <li>Haz clic en la burbuja de chat ubicada en la esquina inferior derecha.</li>
-                    <li>Consulta sobre normas de citación (APA), estructura de párrafos o coherencia textual.</li>
-                    <li>Pide retroalimentación para mejorar la redacción de tus borradores.</li>
-                </ul>
-            </div>
-        </section>
+        <!-- Marco central donde se incrusta el Webchat de Botpress -->
+        <div id="webchat-container"></div>
     </main>
 
     <footer>
-        <p>&copy; 2026 Instituto Superior Sagrada Familia | Plataforma Educativa</p>
+        <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Educativa de Acompañamiento Académico</p>
     </footer>
 
-    <!-- Integración Nativa Botpress -->
-    <script src="https://cdn.botpress.cloud/webchat/v5.0/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2026/09/05/20/20260905204442-VEX25L0K.js" defer></script>
+    <!-- Scripts de integración de Botpress Webchat v5 -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+      window.botpress.init({
+        "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "selector": "#webchat-container",
+        "configuration": {
+          "containerWidth": "100%",
+          "layoutWidth": "100%",
+          "hideWidget": true
+        }
+      });
+    </script>
 </body>
 </html>
