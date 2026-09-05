@@ -55,17 +55,6 @@
             padding: 1.5rem;
         }
 
-        /* Contenedor embebido del Chatbot */
-        #chat-frame {
-            width: 100%;
-            max-width: 950px;
-            height: 700px;
-            border: none;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            background: #ffffff;
-        }
-
         footer {
             background-color: var(--primary-color);
             color: #ffffff;
@@ -75,13 +64,22 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        @media (max-width: 768px) {
-            #chat-frame {
-                height: 80vh;
-            }
-            header h1 {
-                font-size: 1.4rem;
-            }
+        /* Estilos para forzar el Webchat al centro como panel principal */
+        .bp-widget-widget {
+            position: relative !important;
+            right: auto !important;
+            bottom: auto !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            height: 680px !important;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+            border-radius: 12px !important;
+            overflow: hidden !important;
+        }
+
+        /* Ocultar el botón/burbuja flotante de la esquina */
+        .bp-widget-btn {
+            display: none !important;
         }
     </style>
 </head>
@@ -93,17 +91,29 @@
     </header>
 
     <main>
-        <!-- Chatbot embebido en el centro de la pantalla mediante Iframe directo -->
-        <iframe 
-            id="chat-frame"
-            src="https://mediafiles.botpress.cloud/bf310b8f-36c7-4ebc-8a27-a066928eeb3b/webchat/v2/shareable.html"
-            title="Tutor de Escritura Académica">
-        </iframe>
+        <!-- El script inyectará la ventana del chat directamente aquí -->
     </main>
 
     <footer>
         <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Educativa de Acompañamiento Académico</p>
     </footer>
 
+    <!-- Script Oficial de Botpress Webchat -->
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script>
+      window.botpress.init({
+        "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+        "configuration": {
+          "showPowerBy": false,
+          "autofocus": true
+        }
+      });
+
+      // Abrir automáticamente la ventana al cargar
+      window.botpress.on("webchat:ready", () => {
+        window.botpress.open();
+      });
+    </script>
 </body>
 </html>
