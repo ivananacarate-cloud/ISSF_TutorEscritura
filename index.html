@@ -55,6 +55,17 @@
             padding: 1.5rem;
         }
 
+        /* Contenedor central del chat */
+        #bp-webchat {
+            width: 100%;
+            max-width: 950px;
+            height: 700px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            overflow: hidden;
+            background: #ffffff;
+        }
+
         footer {
             background-color: var(--primary-color);
             color: #ffffff;
@@ -64,22 +75,13 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Estilos para forzar el Webchat al centro como panel principal */
-        .bp-widget-widget {
-            position: relative !important;
-            right: auto !important;
-            bottom: auto !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            height: 680px !important;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
-            border-radius: 12px !important;
-            overflow: hidden !important;
-        }
-
-        /* Ocultar el botón/burbuja flotante de la esquina */
-        .bp-widget-btn {
-            display: none !important;
+        @media (max-width: 768px) {
+            #bp-webchat {
+                height: 80vh;
+            }
+            header h1 {
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
@@ -91,29 +93,38 @@
     </header>
 
     <main>
-        <!-- El script inyectará la ventana del chat directamente aquí -->
+        <!-- Elemento donde se renderiza el chat embebido -->
+        <div id="bp-webchat"></div>
     </main>
 
     <footer>
         <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Educativa de Acompañamiento Académico</p>
     </footer>
 
-    <!-- Script Oficial de Botpress Webchat -->
+    <!-- Script embebido nativo de Botpress -->
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script>
-      window.botpress.init({
-        "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
-        "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
-        "configuration": {
-          "showPowerBy": false,
-          "autofocus": true
-        }
-      });
-
-      // Abrir automáticamente la ventana al cargar
-      window.botpress.on("webchat:ready", () => {
-        window.botpress.open();
-      });
+        window.botpress.init({
+            "botId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+            "clientId": "bf310b8f-36c7-4ebc-8a27-a066928eeb3b",
+            "selector": "#bp-webchat",
+            "configuration": {
+                "composerPlaceholder": "Escribe tu consulta sobre redacción o normas APA...",
+                "botName": "Tutor de Escritura Académica",
+                "botDescription": "Acompañamiento en la redacción y revisión de trabajos académicos",
+                "website": {},
+                "email": {},
+                "phone": {},
+                "termsOfService": {},
+                "privacyPolicy": {},
+                "color": "#800020",
+                "variant": "embedded",
+                "header": {
+                    "title": "Tutor de Escritura Académica",
+                    "subtitle": "Instituto Superior La Sagrada Familia"
+                }
+            }
+        });
     </script>
 </body>
 </html>
