@@ -1,137 +1,217 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal de Escritura Académica - ISSF</title>
-  <style>
-    :root { 
-      --bordo: #800020; 
-      --bordo-oscuro: #500014; 
-      --amarillo: #f59e0b; 
-      --amarillo-claro: #fef3c7; 
-      --bg: #f8fafc; 
-      --text: #1e293b; 
-    }
-    body { font-family: system-ui, -apple-system, sans-serif; margin: 0; padding: 0; background-color: var(--bg); color: var(--text); }
-    
-    header { 
-      background-color: var(--bordo); 
-      color: white; 
-      text-align: center; 
-      padding: 2rem 1rem; 
-      border-bottom: 5px solid var(--amarillo); 
-    }
-    header img { max-width: 120px; height: auto; margin-bottom: 0.5rem; }
-    
-    nav { display: flex; justify-content: center; background: var(--bordo-oscuro); flex-wrap: wrap; }
-    nav button { 
-      background: none; 
-      border: none; 
-      color: white; 
-      padding: 1rem 1.5rem; 
-      cursor: pointer; 
-      font-size: 1rem; 
-      font-weight: bold;
-      transition: all 0.2s; 
-    }
-    nav button:hover, nav button.active { 
-      background: var(--amarillo); 
-      color: var(--bordo-oscuro); 
-    }
-    
-    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
-    .tab-content { display: none; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); border-top: 4px solid var(--bordo); }
-    .tab-content.active { display: block; }
-    
-    .btn-link { 
-      display: inline-block; 
-      background-color: var(--bordo); 
-      color: white; 
-      padding: 0.75rem 1.5rem; 
-      text-decoration: none; 
-      border-radius: 6px; 
-      font-weight: bold; 
-      margin-top: 1rem; 
-      border: 2px solid var(--amarillo);
-    }
-    .btn-link:hover { background-color: var(--amarillo); color: var(--bordo-oscuro); }
-    
-    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
-    th, td { border: 1px solid #cbd5e1; padding: 0.75rem; text-align: left; }
-    th { background-color: var(--amarillo-claro); color: var(--bordo-oscuro); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Escritura Académica - ISSF</title>
+    <style>
+        :root {
+            --bordo: #800020;
+            --amarillo: #FFD700;
+            --gris-fondo: #f4f6f9;
+            --texto: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gris-fondo);
+            color: var(--texto);
+        }
+
+        header {
+            background-color: var(--bordo);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 5px solid var(--amarillo);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        header img {
+            max-height: 80px;
+            width: auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: var(--amarillo);
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Menú de Pestañas */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            border-bottom: 3px solid var(--bordo);
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .tab-button {
+            background-color: #e0e0e0;
+            border: none;
+            outline: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--bordo);
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button:hover {
+            background-color: #d0d0d0;
+        }
+
+        .tab-button.active {
+            background-color: var(--bordo);
+            color: var(--amarillo);
+        }
+
+        /* Contenido de las Pestañas */
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .bot-frame {
+            width: 100%;
+            height: 650px;
+            border: 2px solid var(--bordo);
+            border-radius: 8px;
+        }
+
+        .fallback-link {
+            display: block;
+            margin-top: 10px;
+            text-align: right;
+            font-size: 0.9rem;
+            color: var(--bordo);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .fallback-link:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--bordo);
+            color: white;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--amarillo);
+        }
+    </style>
 </head>
 <body>
 
-  <header>
-    <!-- Reemplaza "logo.png" por la ruta o enlace de la imagen del logo -->
-    <img src="logo.png" alt="Logo Instituto Superior Sagrada Familia" onerror="this.style.display='none'">
-    <h1>Portal de Escritura Académica</h1>
-    <p>Instituto Superior Sagrada Familia</p>
-  </header>
+    <header>
+        <img src="logo.png" alt="Logo ISSF" onerror="this.style.display='none'">
+        <div>
+            <h1>Instituto Superior Sagrada Familia</h1>
+            <p>Portal de Asistencia y Escritura Académica</p>
+        </div>
+    </header>
 
-  <nav>
-    <button class="tab-btn active" onclick="openTab('tutor')">🤖 Tutor de Escritura</button>
-    <button class="tab-btn" onclick="openTab('apa')">📚 Normas APA 7ª</button>
-    <button class="tab-btn" onclick="openTab('revisor')">🔍 Revisor de Texto</button>
-    <button class="tab-btn" onclick="openTab('objetivos')">💡 Asistente de Objetivos</button>
-  </nav>
+    <div class="container">
+        <!-- Navegación por pestañas -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'tutor')">Tutor de Escritura</button>
+            <button class="tab-button" onclick="openTab(event, 'revisor')">Revisor de Texto</button>
+            <button class="tab-button" onclick="openTab(event, 'objetivos')">Objetivos y Justificación</button>
+            <button class="tab-button" onclick="openTab(event, 'apa')">Guía APA 7</button>
+        </div>
 
-  <main>
-    <!-- SECCIÓN 1: TUTOR -->
-    <section id="tutor" class="tab-content active">
-      <h2>Tutor IA de Redacción</h2>
-      <p>Orientador paso a paso para planificar y estructurar tus trabajos académicos sin redactarlos por ti.</p>
-      <a href="https://poe.com/TutorEscritura_ISSF" target="_blank" class="btn-link">Abrir Tutor en Poe ↗</a>
-    </section>
+        <!-- Pestaña 1: Tutor -->
+        <div id="tutor" class="tab-content active">
+            <h2>Tutor de Escritura Académica</h2>
+            <p>Consulta tus dudas sobre estructura académica, citas y redacción en tiempo real.</p>
+            <iframe class="bot-frame" src="https://poe.com/TutorEscritura_ISSF" allow="microphone"></iframe>
+            <a href="https://poe.com/TutorEscritura_ISSF" target="_blank" class="fallback-link">¿No carga el asistente? Abrir en pantalla completa ↗</a>
+        </div>
 
-    <!-- SECCIÓN 2: APA 7 -->
-    <section id="apa" class="tab-content">
-      <h2>Guía Rápida - Normas APA 7.ª Edición</h2>
-      <p>Formatos básicos para citas y referencias bibliográficas:</p>
-      <table>
-        <thead>
-          <tr><th>Fuente</th><th>Cita en texto</th><th>Referencia al final</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Libro impreso</strong></td>
-            <td>(Apellido, año)</td>
-            <td>Apellido, A. A. (Año). <em>Título del libro</em>. Editorial.</td>
-          </tr>
-          <tr>
-            <td><strong>Página web</strong></td>
-            <td>(Nombre del sitio, año)</td>
-            <td>Organización. (Año, día mes). <em>Título del artículo</em>. URL</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+        <!-- Pestaña 2: Revisor -->
+        <div id="revisor" class="tab-content">
+            <h2>Revisor de Texto e Cohesión</h2>
+            <p>Pega tu borrador para analizar la ortografía, puntuación, cohesión y tono académico.</p>
+            <iframe class="bot-frame" src="https://poe.com/RevisordeTextoISSF" allow="microphone"></iframe>
+            <a href="https://poe.com/RevisordeTextoISSF" target="_blank" class="fallback-link">¿No carga el asistente? Abrir en pantalla completa ↗</a>
+        </div>
 
-    <!-- SECCIÓN 3: REVISOR -->
-    <section id="revisor" class="tab-content">
-      <h2>Revisor de Texto e Cohesión</h2>
-      <p>Herramienta para detectar problemas de ortografía, repetición de palabras y errores de puntuación en tus borradores.</p>
-      <a href="https://poe.com/RevisordeTextoISSF?invite_code=20468256-34b6-4d20-93c9-cb2385be7901" target="_blank" class="btn-link">Abrir Revisor en Poe ↗</a>
-    </section>
+        <!-- Pestaña 3: Objetivos -->
+        <div id="objetivos" class="tab-content">
+            <h2>Asistente de Objetivos y Justificación</h2>
+            <p>Estructura tus objetivos generales, específicos y fundamenta tu proyecto académico.</p>
+            <iframe class="bot-frame" src="https://poe.com/ISSFObjetivos" allow="microphone"></iframe>
+            <a href="https://poe.com/ISSFObjetivos" target="_blank" class="fallback-link">¿No carga el asistente? Abrir en pantalla completa ↗</a>
+        </div>
 
-    <!-- SECCIÓN 4: OBJETIVOS -->
-    <section id="objetivos" class="tab-content">
-      <h2>Generador y Orientador de Estructura</h2>
-      <p>Asistente pedagógico para redactar Objetivos Generales, Específicos y Justificación usando la Taxonomía de Bloom.</p>
-      <a href="https://poe.com/ISSFObjetivos?invite_code=a22ac123-5714-40b0-9ee8-2e7b69cf15c0" target="_blank" class="btn-link">Abrir Asistente en Poe ↗</a>
-    </section>
-  </main>
+        <!-- Pestaña 4: Guía APA 7 -->
+        <div id="apa" class="tab-content">
+            <h2>Guía Rápida de Normas APA 7ª Edición</h2>
+            <p>Formato básico para la presentación de trabajos del Instituto Superior Sagrada Familia:</p>
+            <ul>
+                <li><strong>Tipografía:</strong> Times New Roman 12pt, Arial 11pt, o Calibri 11pt.</li>
+                <li><strong>Interlineado:</strong> 2.0 (doble espacio), sin espacio entre párrafos.</li>
+                <li><strong>Márgenes:</strong> 2.54 cm (1 pulgada) en los 4 lados.</li>
+                <li><strong>Sangría:</strong> En la primera línea de cada párrafo (1.27 cm).</li>
+                <li><strong>Cita textual corta (menos de 40 palabras):</strong> "Entre comillas" dentro del texto con (Apellido, año, p. X).</li>
+                <li><strong>Cita textual larga (40 palabras o más):</strong> En bloque independiente, sin comillas, sangría completa de 1.27 cm.</li>
+            </ul>
+        </div>
+    </div>
 
-  <script>
-    function openTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      event.currentTarget.classList.add('active');
-    }
-  </script>
+    <footer>
+        &copy; 2026 Instituto Superior Sagrada Familia - Portal Académico Institucional
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+    </script>
 
 </body>
 </html>
