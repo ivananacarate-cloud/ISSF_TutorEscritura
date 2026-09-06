@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoría de Escritura Académica - ISSF</title>
+    <title>Asistente de Escritura - Lengua y Literatura - ISSF</title>
     <style>
         :root {
             --primary-color: #800020; /* Bordó Institucional */
@@ -28,11 +28,11 @@
             min-height: 100vh;
         }
 
-        /* Encabezado */
+        /* Encabezado con Logo */
         header {
             background-color: var(--primary-color);
             color: #ffffff;
-            padding: 1.2rem 2rem;
+            padding: 1rem 2rem;
             border-bottom: 4px solid var(--accent-color);
             box-shadow: 0 2px 8px rgba(0,0,0,0.15);
         }
@@ -40,10 +40,23 @@
         .header-container {
             max-width: 1200px;
             margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-school {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            background: #ffffff;
+            border-radius: 50%;
+            padding: 4px;
+            border: 2px solid var(--accent-color);
         }
 
         .header-title h1 {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
         }
 
         .header-title p {
@@ -51,7 +64,7 @@
             opacity: 0.9;
         }
 
-        /* Navegación por pestañas */
+        /* Navegación por Pestañas */
         nav {
             background-color: var(--primary-dark);
             padding: 0.5rem 2rem;
@@ -68,10 +81,11 @@
             background: transparent;
             border: 1px solid rgba(255,255,255,0.2);
             color: white;
-            padding: 8px 18px;
+            padding: 10px 20px;
             border-radius: 4px;
             cursor: pointer;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: all 0.2s;
         }
 
@@ -120,17 +134,10 @@
             line-height: 1.6;
             margin-bottom: 1rem;
             color: #444;
+            font-size: 1rem;
         }
 
-        /* Pestaña 1: Institucional */
-        .info-card {
-            background: #fafafa;
-            border-left: 4px solid var(--accent-color);
-            padding: 1rem 1.5rem;
-            margin: 1rem 0;
-        }
-
-        /* Pestaña 2: Normas APA */
+        /* Pestaña NORMAS APA */
         .apa-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -141,6 +148,7 @@
         .apa-card {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
+            border-left: 4px solid var(--primary-color);
             border-radius: 6px;
             padding: 1.2rem;
         }
@@ -148,7 +156,7 @@
         .apa-card h3 {
             color: var(--primary-color);
             font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         ul {
@@ -157,7 +165,11 @@
             line-height: 1.6;
         }
 
-        /* Pestaña 3: Chatbot Edcafe Embed */
+        li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Pestaña REVISOR ACADÉMICO (Chatbot Edcafe) */
         .iframe-container {
             width: 100%;
             height: 650px;
@@ -173,7 +185,7 @@
             border: none;
         }
 
-        /* Pie de página */
+        /* Footer */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -184,6 +196,10 @@
         }
 
         @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
             .nav-container {
                 flex-direction: column;
             }
@@ -197,78 +213,72 @@
 
     <header>
         <div class="header-container">
+            <!-- Imagen de Logo Institucional -->
+            <img src="logo.png" alt="Logo ISSF" class="logo-school" onerror="this.style.display='none'">
             <div class="header-title">
-                <h1>Tutoría de Escritura Académica</h1>
-                <p>Instituto Superior La Sagrada Familia (ISSF)</p>
+                <h1>Instituto Superior Sagrada Familia</h1>
+                <p>Materia: Lengua y Literatura | Asistente de Escritura Académica</p>
             </div>
         </div>
     </header>
 
     <nav>
         <div class="nav-container">
-            <button class="tab-btn active" onclick="openTab(event, 'institucional')">1. Sobre la Escuela y el Tutor</button>
-            <button class="tab-btn" onclick="openTab(event, 'apa')">2. Guía Normas APA (7.ª ed.)</button>
-            <button class="tab-btn" onclick="openTab(event, 'revisor')">3. Revisor de Texto (IA)</button>
+            <button class="tab-btn active" onclick="openTab(event, 'inicio')">INICIO</button>
+            <button class="tab-btn" onclick="openTab(event, 'apa')">NORMAS APA</button>
+            <button class="tab-btn" onclick="openTab(event, 'revisor')">REVISOR ACADÉMICO</button>
         </div>
     </nav>
 
     <main>
-        <!-- Pestaña 1: Información de la Escuela y Propósito -->
-        <div id="institucional" class="tab-content active">
-            <h2>Instituto Superior La Sagrada Familia (ISSF)</h2>
-            <p>El <strong>ISSF</strong> es una institución educativa comprometida con la excelencia académica, la formación integral y el desarrollo de competencias pedagógicas y profesionales de sus estudiantes.</p>
-            
-            <div class="info-card">
-                <h3>¿Para qué sirve este Chatbot Asistente?</h3>
-                <p>El <strong>Tutor de Escritura Académica</strong> es un espacio digital diseñado para acompañar a los estudiantes en el proceso de redacción de trabajos prácticos, monografías y proyectos finales.</p>
-                <ul>
-                    <li><strong>No escribe por vos:</strong> Es un orientador pedagógico que te ayuda a clarificar tus ideas paso a paso.</li>
-                    <li><strong>Acompañamiento 24/7:</strong> Podés consultar sobre estructura, tono académico, argumentación y corrección de borrradores.</li>
-                    <li><strong>Soporte por voz:</strong> Incorpora capacidades de audio para que puedas interactuar mediante mensajes de voz de forma ágil.</li>
-                </ul>
-            </div>
+        <!-- Pestaña 1: INICIO -->
+        <div id="inicio" class="tab-content active">
+            <h2>Bienvenida al Asistente de escritura de la materia Lengua y Literatura</h2>
+            <p>Esta plataforma acompaña a estudiantes de tercer año del Instituto Superior Sagrada Familia en su proceso de escritura. Te guía en cada etapa: elección del tema, estructura y orden de los párrafos, revisión ortográfica, etc.</p>
         </div>
 
-        <!-- Pestaña 2: Normas APA 7.ª Edición -->
+        <!-- Pestaña 2: NORMAS APA -->
         <div id="apa" class="tab-content">
-            <h2>Guía Rápida de Normas APA (7.ª edición)</h2>
-            <p>Resumen práctico de las pautas principales para la presentación de trabajos académicos en el ISSF:</p>
+            <h2>Guía Práctica de Normas APA (7.ª edición)</h2>
+            <p>A continuación se detallan los lineamientos principales para el formato y la citación en tus trabajos prácticos:</p>
 
             <div class="apa-grid">
                 <div class="apa-card">
-                    <h3>Formato General</h3>
+                    <h3>Formato de Texto y Hoja</h3>
                     <ul>
-                        <li><strong>Fuente:</strong> Times New Roman (12 pt), Arial (11 pt) o Calibri (11 pt).</li>
-                        <li><strong>Interlineado:</strong> Doble (2.0) en todo el texto.</li>
-                        <li><strong>Márgenes:</strong> 2.54 cm (1 pulgada) en los 4 lados.</li>
-                        <li><strong>Alineación:</strong> Izquierda (sin justificar).</li>
+                        <li><strong>Tipo y tamaño de letra:</strong> Times New Roman 12 pt, Arial 11 pt o Calibri 11 pt.</li>
+                        <li><strong>Alineación del texto:</strong> Izquierda (sin justificar).</li>
+                        <li><strong>Interlineado:</strong> Doble (2.0) en todo el texto, sin espacio adicional entre párrafos.</li>
+                        <li><strong>Márgenes:</strong> 2,54 cm (1 pulgada) en los cuatro bordes de la página.</li>
+                        <li><strong>Sangría:</strong> En la primera línea de cada párrafo (1,27 cm).</li>
                     </ul>
                 </div>
 
                 <div class="apa-card">
-                    <h3>Citas en el Texto</h3>
+                    <h3>Cómo Citar Fuentes</h3>
                     <ul>
-                        <li><strong>Cita textual corta (&lt;40 palabras):</strong> Entre comillas e integrada en el párrafo con autor, año y página. Ej: <em>(Pérez, 2023, p. 45)</em>.</li>
-                        <li><strong>Cita larga (&gt;40 palabras):</strong> En bloque independiente, con sangría de 1.27 cm, sin comillas.</li>
-                        <li><strong>Cita de parafraseo:</strong> Se mencionan las ideas del autor con tus palabras. Ej: <em>Según Gómez (2022)...</em></li>
+                        <li><strong>Cita textual corta (menos de 40 palabras):</strong> Se integra en el texto entre comillas, indicando autor, año y página. Ej: <em>(Gómez, 2023, p. 12)</em>.</li>
+                        <li><strong>Cita textual larga (40 palabras o más):</strong> Se ubica en un bloque independiente, sin comillas y con sangría izquierda de 1,27 cm.</li>
+                        <li><strong>Cita de parafraseo:</strong> Cuando explicás la idea de un autor con tus palabras. Se indica autor y año. Ej: <em>Según Fernández (2021)...</em></li>
                     </ul>
                 </div>
 
                 <div class="apa-card">
-                    <h3>Referencias Bibliográficas</h3>
+                    <h3>Lista de Bibliografía / Referencias</h3>
                     <ul>
-                        <li>Organizadas alfabéticamente en la última página.</li>
-                        <li>Con <strong>sangría francesa</strong> de 1.27 cm.</li>
-                        <li><strong>Ejemplo de Libro:</strong><br>Apellido, N. (Año). <em>Título del libro</em>. Editorial.</li>
+                        <li>Se ubica al final del trabajo en una página independiente bajo el título <strong>Referencias</strong>.</li>
+                        <li>Ordenada alfabéticamente por el apellido del primer autor.</li>
+                        <li>Debe llevar <strong>sangría francesa</strong> de 1,27 cm.</li>
+                        <li><strong>Ejemplo formato libro:</strong><br>Apellido, N. (Año). <em>Título de la obra en cursiva</em>. Editorial.</li>
                     </ul>
                 </div>
             </div>
         </div>
 
-        <!-- Pestaña 3: Chatbot Integrado (Edcafe AI) -->
+        <!-- Pestaña 3: REVISOR ACADÉMICO -->
         <div id="revisor" class="tab-content">
-            <h2>Revisor de Texto - Tutor IA</h2>
-            <p>Utilizá la ventana interactiva a continuación para dialogar con el asistente de escritura. Podés enviarle textos redactados, hacerle preguntas sobre cómo encarar tu escrito o enviarle audios:</p>
+            <h2>Revisor Académico</h2>
+            <p>Interactuá directamente con el chatbot para realizar consultas sobre tu borrador, recibir orientación en la redacción o interactuar mediante mensajes de voz:</p>
 
             <div class="iframe-container">
                 <iframe 
@@ -280,7 +290,7 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Instituto Superior La Sagrada Familia | Plataforma Digital de Acompañamiento Académico</p>
+        <p>&copy; 2026 Instituto Superior Sagrada Familia | Lengua y Literatura - 3.º Año</p>
     </footer>
 
     <script>
